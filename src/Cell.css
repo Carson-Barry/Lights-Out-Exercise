@@ -3,12 +3,17 @@
   width: 100px;
   background-color: darkgray;
   cursor: pointer;
+  display: inline-block;
+  margin: 5px;
+  box-sizing: border-box;
 }
 
 .Cell-lit {
-  background-color: white;
+  border: 3px dashed yellow;
+  background-color: #ffffe0;
 }
 
 .Cell-dark {
-  background-color: black;
+  border: 3px dashed black;
+  background-color: lightgray;
 }

@@ -61,7 +61,7 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn }) {
     return true;
   }
 
-  function flipCellsAround(coord) {
+  function flipCellsAroundMe(coord) {
     setBoard(oldBoard => {
       const [y, x] = coord.split("-").map(Number);
 
@@ -91,7 +91,20 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn }) {
 
   // TODO
   else {
-    //console.log(board)
+    console.log(board)
+    return (
+      <table className="Board">
+        <tbody>
+          {board.map(row => (
+            <tr>
+              {row.map(cell => (
+                <Cell isLit={cell} flipCellsAroundMe={flipCellsAroundMe}/>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
   }
 
 }
