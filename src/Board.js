@@ -73,11 +73,19 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn }) {
         }
       };
 
-      // TODO: Make a (deep) copy of the oldBoard
+    // TODO: Make a (deep) copy of the oldBoard
+      const boardCopy = oldBoard.map((row) => ([...row]))
+    // Previous line derived from solution in Springboard materials
 
-      // TODO: in the copy, flip this cell and the cells around it
+    // TODO: in the copy, flip this cell and the cells around it
+      flipCell(y, x, boardCopy);
+      flipCell(y+1, x, boardCopy);
+      flipCell(y, x+1, boardCopy);
+      flipCell(y-1, x, boardCopy);
+      flipCell(y, x-1, boardCopy)
 
-      // TODO: return the copy
+    // TODO: return the copy
+      return boardCopy;
     });
   }
 
@@ -91,14 +99,13 @@ function Board({ nrows = 3, ncols = 3, chanceLightStartsOn }) {
 
   // TODO
   else {
-    console.log(board)
     return (
       <table className="Board">
         <tbody>
-          {board.map(row => (
-            <tr>
-              {row.map(cell => (
-                <Cell isLit={cell} flipCellsAroundMe={flipCellsAroundMe}/>
+          {board.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, columnIndex) => (
+                <Cell key={`${rowIndex}-${columnIndex}`} isLit={cell} flipCellsAroundMe={evt => flipCellsAroundMe(`${rowIndex}-${columnIndex}`)}/>
               ))}
             </tr>
           ))}
